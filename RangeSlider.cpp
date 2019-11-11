@@ -172,8 +172,15 @@ void RangeSlider::mouseReleaseEvent(QMouseEvent* aEvent)
 {
     Q_UNUSED(aEvent);
 
+    // for sliding finish signal
+    //if(1||mFirstHandlePressed || mSecondHandlePressed){
+    emit slidingFinished();
+    //}
+
     mFirstHandlePressed = false;
     mSecondHandlePressed = false;
+
+
 }
 
 void RangeSlider::changeEvent(QEvent* aEvent)
