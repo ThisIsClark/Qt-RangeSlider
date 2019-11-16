@@ -88,7 +88,7 @@ void RangeSlider::paintEvent(QPaintEvent* aEvent)
         selectedRect.setRight(rightHandleRect.left() - 0.5);
     } else {
         selectedRect.setTop(leftHandleRect.bottom() + 0.5);
-        selectedRect.setBottom((isSingleHandleSlider ? rightHandleRect.top() : rightHandleRect.bottom()) - 0.5);
+        selectedRect.setBottom((isSingleHandleSlider ? rightHandleRect.bottom() : rightHandleRect.top()) - 0.5);
     }
     QBrush selectedBrush(mBackgroudColor);
     painter.setBrush(selectedBrush);
