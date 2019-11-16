@@ -10,7 +10,7 @@ class RangeSlider : public QWidget
 
 public:
     RangeSlider( QWidget* aParent = Q_NULLPTR);
-    RangeSlider( Qt::Orientation ori, QWidget* aParent = Q_NULLPTR);
+    RangeSlider( Qt::Orientation ori, bool singleHandleSlider = false, QWidget* aParent = Q_NULLPTR);
 
     QSize minimumSizeHint() const override;
 
@@ -67,4 +67,5 @@ private:
     QColor mBackgroudColorDisabled;
     QColor mBackgroudColor;
     Qt::Orientation orientation;
+    bool isSingleHandleSlider;
 };

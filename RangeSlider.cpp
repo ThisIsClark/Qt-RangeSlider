@@ -23,12 +23,12 @@ RangeSlider::RangeSlider(QWidget* aParent)
       mBackgroudColorEnabled(QColor(0x1E, 0x90, 0xFF)),
       mBackgroudColorDisabled(Qt::darkGray),
       mBackgroudColor(mBackgroudColorEnabled),
-      orientation(Qt::Vertical)
+      orientation(Qt::Horizontal)
 {
     setMouseTracking(true);
 }
 
-RangeSlider::RangeSlider(Qt::Orientation ori, QWidget* aParent)
+RangeSlider::RangeSlider(Qt::Orientation ori, bool singleHandleSlider, QWidget* aParent)
     : QWidget(aParent),
       mMinimum(0),
       mMaximum(100),
@@ -40,7 +40,8 @@ RangeSlider::RangeSlider(Qt::Orientation ori, QWidget* aParent)
       mBackgroudColorEnabled(QColor(0x1E, 0x90, 0xFF)),
       mBackgroudColorDisabled(Qt::darkGray),
       mBackgroudColor(mBackgroudColorEnabled),
-      orientation(ori)
+      orientation(ori),
+      isSingleHandleSlider(singleHandleSlider)
 {
     setMouseTracking(true);
 }
@@ -76,7 +77,8 @@ void RangeSlider::paintEvent(QPaintEvent* aEvent)
 
     // Second value handle rect
     QRectF rightHandleRect = secondHandleRect();
-    painter.drawRoundedRect(rightHandleRect, 2, 2);
+    if(!isSingleHandleSlider)
+        painter.drawRoundedRect(rightHandleRect, 2, 2);
 
     // Handles
     painter.setRenderHint(QPainter::Antialiasing, false);
@@ -86,7 +88,7 @@ void RangeSlider::paintEvent(QPaintEvent* aEvent)
         selectedRect.setRight(rightHandleRect.left() - 0.5);
     } else {
         selectedRect.setTop(leftHandleRect.bottom() + 0.5);
-        selectedRect.setBottom(rightHandleRect.top() - 0.5);
+        selectedRect.setBottom((isSingleHandleSlider ? rightHandleRect.top() : rightHandleRect.bottom()) - 0.5);
     }
     QBrush selectedBrush(mBackgroudColor);
     painter.setBrush(selectedBrush);
@@ -362,7 +364,7 @@ void RangeSlider::setMaximum(int aMaximum)
 int RangeSlider::validLength() const
 {
     int len = (orientation == Qt::Horizontal) ? width() : height();
-    return len - scLeftRightMargin * 2 - scHandleSideLength * 2;
+    return len - scLeftRightMargin * 2 - scHandleSideLength * (isSingleHandleSlider ? 1 : 2);
 }
 
 void RangeSlider::SetRange(int aMinimum, int mMaximum)

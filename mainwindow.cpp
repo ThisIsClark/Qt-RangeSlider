@@ -9,12 +9,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 return;
-    rsH = new RangeSlider(Qt::Horizontal, nullptr);
-    rsV = new RangeSlider(Qt::Vertical, nullptr);
+    rsH = new RangeSlider(Qt::Horizontal, false, nullptr);
+    rsV = new RangeSlider(Qt::Vertical, false, nullptr);
+    rsHsingle = new RangeSlider(Qt::Horizontal, true, nullptr);
+    rsVsingle = new RangeSlider(Qt::Vertical, true, nullptr);
 //    QLayout *layout = this->layout();
 //    layout->addWidget(rsH);
 //    layout->addWidget(rsV);
-    setCentralWidget(rsH);
+    setCentralWidget(rsHsingle);
 
 }
 
