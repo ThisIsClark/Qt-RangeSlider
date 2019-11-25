@@ -149,7 +149,7 @@ void RangeSlider::mousePressEvent(QMouseEvent* aEvent)
                     && posValue < secondHandleRectPosValue)
             {
                 if(posValue - (firstHandleRectPosValue + scHandleSideLength) <
-                   (secondHandleRectPosValue - (firstHandleRectPosValue + scHandleSideLength)) / 2)
+                   (secondHandleRectPosValue - (firstHandleRectPosValue + scHandleSideLength)) / 2 || isSingleHandleSlider)
                 {
                     if(mLowerValue + step < mUpperValue)
                     {
@@ -162,14 +162,15 @@ void RangeSlider::mousePressEvent(QMouseEvent* aEvent)
                 }
                 else
                 {
-                    if(mUpperValue - step > mLowerValue)
-                    {
-                        setUpperValue(mUpperValue - step);
-                    }
-                    else
-                    {
-                        setUpperValue(mLowerValue);
-                    }
+                    if(!isSingleHandleSlider)
+                        if(mUpperValue - step > mLowerValue)
+                        {
+                            setUpperValue(mUpperValue - step);
+                        }
+                        else
+                        {
+                            setUpperValue(mLowerValue);
+                        }
                 }
             }
             else if(posValue > secondHandleRectPosValue + scHandleSideLength)
