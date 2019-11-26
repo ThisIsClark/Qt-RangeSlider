@@ -7,10 +7,19 @@
 class RangeSlider : public QWidget
 {
     Q_OBJECT
+    Q_ENUMS(RangeSliderTypes)
 
 public:
+    enum Option {
+        NoHandle = 0x0,
+        LeftHandle = 0x1,
+        RightHandle = 0x2,
+        DoubleHandles = LeftHandle | RightHandle
+    };
+    Q_DECLARE_FLAGS(Options, Option)
+
     RangeSlider( QWidget* aParent = Q_NULLPTR);
-    RangeSlider( Qt::Orientation ori, bool singleHandleSlider = false, QWidget* aParent = Q_NULLPTR);
+    RangeSlider( Qt::Orientation ori, Options t = DoubleHandles, QWidget* aParent = Q_NULLPTR);
 
     QSize minimumSizeHint() const override;
 
@@ -67,5 +76,7 @@ private:
     QColor mBackgroudColorDisabled;
     QColor mBackgroudColor;
     Qt::Orientation orientation;
-    bool isSingleHandleSlider;
+    Options type;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(RangeSlider::Options)

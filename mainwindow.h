@@ -18,7 +18,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    RangeSlider *rsH, *rsV, *rsHsingle, *rsVsingle;
+    RangeSlider *rsH, *rsV, *rsHsingleLeft, *rsVsingleLeft, *rsHsingleRight, *rsVsingleRight;
 };
 
 #endif // MAINWINDOW_H
