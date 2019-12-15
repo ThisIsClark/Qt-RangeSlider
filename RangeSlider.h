@@ -42,6 +42,7 @@ signals:
     void lowerValueChanged(int aLowerValue);
     void upperValueChanged(int aUpperValue);
     void rangeChanged(int aMin, int aMax);
+    void slidingFinished();
 
 public slots:
     void setLowerValue(int aLowerValue);
