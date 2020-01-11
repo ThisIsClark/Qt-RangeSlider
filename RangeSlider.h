@@ -7,9 +7,19 @@
 class RangeSlider : public QWidget
 {
     Q_OBJECT
+    Q_ENUMS(RangeSliderTypes)
 
 public:
-    RangeSlider(QWidget* aParent = Q_NULLPTR);
+    enum Option {
+        NoHandle = 0x0,
+        LeftHandle = 0x1,
+        RightHandle = 0x2,
+        DoubleHandles = LeftHandle | RightHandle
+    };
+    Q_DECLARE_FLAGS(Options, Option)
+
+    RangeSlider( QWidget* aParent = Q_NULLPTR);
+    RangeSlider( Qt::Orientation ori, Options t = DoubleHandles, QWidget* aParent = Q_NULLPTR);
 
     QSize minimumSizeHint() const override;
 
@@ -52,7 +62,7 @@ public slots:
 private:
     Q_DISABLE_COPY(RangeSlider)
     float currentPercentage();
-    int validWidth() const;
+    int validLength() const;
 
     int mMinimum;
     int mMaximum;
@@ -65,4 +75,8 @@ private:
     QColor mBackgroudColorEnabled;
     QColor mBackgroudColorDisabled;
     QColor mBackgroudColor;
+    Qt::Orientation orientation;
+    Options type;
 };
+
+Q_DECLARE_OPERATORS_FOR_FLAGS(RangeSlider::Options)
