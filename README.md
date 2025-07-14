@@ -10,6 +10,6 @@ Here is the demo:<br>
 ## ❤ Enjoying this project?
 If this tool saves you time or makes your work easier, consider supporting its development. Scan the QR code below to buy me a coffee! Your encouragement keeps this project alive and updated.
 
-![receive](https://github.com/user-attachments/assets/0b1acfe9-c72a-4456-9c36-a41b6c213fe3)
+![receive](https://github.com/user-attachments/assets/ddb88a71-3c58-46f3-a3eb-f0fa3eca33ca)
 
 Thank you for using *RangeSlider* — whether you sponsor or not!
